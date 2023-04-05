@@ -7,7 +7,7 @@ const fs = require("fs");
 // const dotenv = require("dotenv").config();
 
 // Importation du package file-type
-const fileTypeFromFile = require("file-type-cjs");
+const fileTypeFromFile = require("file-type-cjs-fix");
 
 /************************* Créer une Sauce *************************/
 
