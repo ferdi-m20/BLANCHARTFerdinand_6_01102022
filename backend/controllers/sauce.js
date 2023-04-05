@@ -2,10 +2,6 @@
 const Sauce = require("../models/Sauce");
 // Importation du module file system pour Multer
 const fs = require("fs");
-// const jwt = require("jsonwebtoken");
-// const User = require("../models/User");
-// const dotenv = require("dotenv").config();
-
 // Importation du package file-type
 const fileTypeFromFile = require("file-type-cjs-fix");
 
@@ -43,10 +39,6 @@ exports.createSauce = async (req, res, next) => {
     imageUrl: `${req.protocol}://${req.get("host")}/images/${
       req.file.filename
     }`,
-    // likes: 0,
-    // dislikes: 0,
-    // usersLiked: [""],
-    // usersDisliked: [""],
   });
   // Enregistre dans la base de données
   sauce
@@ -63,35 +55,6 @@ Si aucun fichier n'est fourni, les informations sur la sauce se trouvent directe
 Si un fichier est fourni, la sauce transformée en chaîne de caractères se trouve dans req.body.sauce */
 
 exports.modifySauce = async (req, res, next) => {
-  /*
-  const sauceObject = req.file
-    ? {
-        ...JSON.parse(req.body.sauce),
-        imageUrl: `${req.protocol}://${req.get("host")}/images/${
-          req.file.filename
-        }`,
-      }
-    : { ...req.body };
-
-  delete sauceObject._userId;
-  Sauce.findOne({ _id: req.params.id })
-    .then((sauce) => {
-      if (sauce.userId != req.auth.userId) {
-        res.status(401).json({ message: "Not authorized" });
-      } else {
-        Sauce.updateOne(
-          { _id: req.params.id },
-          { ...sauceObject, _id: req.params.id }
-        )
-          .then(() => res.status(200).json({ message: "Objet modifié!" }))
-          .catch((error) => res.status(401).json({ error }));
-      }
-    })
-    .catch((error) => {
-      res.status(400).json({ error });
-    });
-    */
-
   if (req.file) {
     // On initialise un array contenant les mimes types attendus
     const whitelist = ["image/png", "image/jpeg", "image/jpg", "image/webp"];
@@ -231,79 +194,16 @@ exports.getOneSauce = (req, res, next) => {
 /************************* Liker ou Disliker une Sauce *************************/
 
 exports.likeSauce = (req, res, next) => {
-  const userId = req.body.userId; //on accède à l'user qui a aimé
-  const like = req.body.like; //on accede au corps rêq de like
-  const sauceId = req.params.id; //on accède à l'id de la sauce
-
-  /* 
-
-  Sauce.findOne({ _id: sauceId }) // On cherche l'id dans la base de donnée
-    .then((sauce) => {
-      // like = 1 (likes +1 ) Si userId n'est pas dans le tableau usersLiked et que like est égal à 1
-      // Pouce vert activé (front-end)
-      if (!sauce.usersLiked.includes(userId) && like === 1) {
-        Sauce.updateOne(
-          { _id: sauceId }, //mets à jour l'User en incluant l'id
-          {
-            $inc: { likes: 1 }, //$inc Incrémente la valeur du champ du montant spécifié.
-            $push: { usersLiked: userId }, //$push Ajoute un élément à un tableau.
-          }
-        )
-          .then(() => res.status(201).json({ message: "User like +1" }))
-          .catch((error) => res.status(400).json({ error }));
-      }
-      //like = 0 (likes = 0) Si userId est dans le tableau usersLiked et que like est égal à 0
-      // Pouce vert désactivé (front-end) like annulé
-      if (sauce.usersLiked.includes(userId) && like === 0) {
-        Sauce.updateOne(
-          { _id: sauceId },
-          {
-            $inc: { likes: -1 }, //$inc opérateur mongoDB incrémente
-            $pull: { usersLiked: userId }, //$pull Supprime tous les éléments du tableau qui correspondent à une requête spécifiée.
-          }
-        )
-          .then(() => res.status(201).json({ message: "User like 0" }))
-          .catch((error) => res.status(400).json({ error }));
-      }
-
-      //like -1 (dislikes +1) Si userId n'est pas dans le tableau usersDisliked et que like est égal à -1
-      // Pouce rouge activé (front-end)
-      if (!sauce.usersDisliked.includes(userId) && like === -1) {
-        Sauce.updateOne(
-          { _id: sauceId },
-          {
-            $inc: { dislikes: 1 },
-            $push: { usersDisliked: userId },
-          }
-        )
-          .then(() => res.status(201).json({ message: "User disLike +1" }))
-          .catch((error) => res.status(400).json({ error }));
-      }
-
-      // like = 0 pas de vote Si userId est dans le tableau usersDisliked et que like est égal à 0
-      // Pouce rouge désactivé (front-end) dislike annulé
-      if (sauce.usersDisliked.includes(userId) && like === 0) {
-        Sauce.updateOne(
-          { _id: sauceId },
-          {
-            $inc: { dislikes: -1 },
-            $pull: { usersDisliked: userId },
-          }
-        )
-          .then(() => res.status(201).json({ message: "User disLike +1" }))
-          .catch((error) => res.status(400).json({ error }));
-      }
-    })
-    .catch((error) => res.status(404).json({ error }));
-
-    */
+  const userId = req.body.userId; // On accède à l'user qui a aimé
+  const like = req.body.like; // On accède au corps rêq de like
+  const sauceId = req.params.id; // Oon accède à l'id de la sauce
 
   // AJOUTER UN LIKE OU UN DISLIKE
 
   if (like === 1) {
     Sauce.findOne({ _id: sauceId })
       .then((sauce) => {
-        //On regarde si l'utilisateur n'a pas déjà liké ou disliké la sauce
+        // On regarde si l'utilisateur n'a pas déjà liké ou disliké la sauce
         if (
           sauce.usersDisliked.includes(userId) ||
           sauce.usersLiked.includes(userId)
@@ -325,6 +225,7 @@ exports.likeSauce = (req, res, next) => {
       })
       .catch((error) => res.status(404).json({ error }));
   }
+
   if (like === -1) {
     Sauce.findOne({ _id: sauceId })
       .then((sauce) => {

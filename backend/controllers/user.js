@@ -16,16 +16,16 @@ exports.signup = (req, res, next) => {
   const { error } = userValidation(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 
-  //Appel de bcrypt qui hashe le mot de passe 10 fois ici et renvoie une promise
+  // Appel de bcrypt qui hashe le mot de passe 10 fois ici et renvoie une promise
   bcrypt
     .hash(req.body.password, 10)
     .then((hash) => {
-      //Conversion de l'objet "User" en une chaîne "user"
+      // Conversion de l'objet "User" en une chaîne "user"
       const user = new User({
         email: req.body.email,
         password: hash,
       });
-      //Enregristre dans la base de données
+      // Enregristre dans la base de données
       user
         .save()
         .then(() => res.status(201).json({ message: "Utilisateur créé !" }))

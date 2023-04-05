@@ -1,6 +1,5 @@
 // Importation du package multer permettant de gérer les fichiers entrants dans les requêtes HTTP
 const multer = require("multer");
-// const path = require("path");
 
 // PERMET DE RECUPERER LE FORMAT D'UNE IMAGE
 const MIME_TYPES = {
@@ -18,7 +17,6 @@ const storage = multer.diskStorage({
   // La méthode diskStorage() configure le chemin et le nom de fichier pour les fichiers entrants
   destination: (req, file, callback) => {
     callback(null, "images");
-    console.log(file);
   },
   /* La fonction filename indique à multer de créer une fonction JS permettant de générer une String aléatoire 
      et d'ajouter un timestamp Date.now() comme nom de fichier. 
