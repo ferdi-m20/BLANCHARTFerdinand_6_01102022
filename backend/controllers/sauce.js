@@ -3,7 +3,7 @@ const Sauce = require("../models/Sauce");
 // Importation du module file system pour Multer
 const fs = require("fs");
 // Importation du package file-type
-const fileTypeFromFile = require("file-type-cjs-fix");
+const fileTypeFromFile = require("file-type-cjs");
 
 /************************* Créer une Sauce *************************/
 
