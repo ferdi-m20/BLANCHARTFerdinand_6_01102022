@@ -1,6 +1,6 @@
 # Piquante
 
-A web application where users can create, modify or delete added sauces and like or dislike other users sauces also
+A web application to add, edit, delete, like or dislike products (here sauces)
 
 ## Installation
 
@@ -23,7 +23,7 @@ A web application where users can create, modify or delete added sauces and like
 5. Further Information:
 
 - The server should run on `localhost` with default port `3000`.
-  If the server runs on another port for any reason, this is printed to the console when the server starts, e.g. `Listening on port 3001`.
+  If the server runs on another port for any reason, this is printed to the console when the server starts, e.g. `Listening on port 3001`
 
 ### Installing and launching Front-end:
 
@@ -37,11 +37,11 @@ A web application where users can create, modify or delete added sauces and like
 
 ## Built With
 
-    - [Visual Studio Code](https://code.visualstudio.com/) - Text editor
-    - [GitHub](https://github.com/) - Version control tool
-    - [Node.js](https://nodejs.org/en/) - Platform for running server-side JavaScript code
-    - [Express](https://expressjs.com/fr/) - Web framework for Node.js
-    - [MongoDB](https://www.mongodb.com/fr) - NoSQL database storing JSON documents
+- [Visual Studio Code](https://code.visualstudio.com/) - Text editor
+- [GitHub](https://github.com/) - Version control tool
+- [Node.js](https://nodejs.org/en/) - Platform for running server-side JavaScript code
+- [Express](https://expressjs.com/fr/) - Web framework for Node.js
+- [MongoDB](https://www.mongodb.com/fr-fr) - NoSQL database storing JSON documents
 
 ## More Projects
 
