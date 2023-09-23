@@ -39,9 +39,19 @@ A web application to add, edit, delete, like or dislike products (here sauces)
 
 - [Visual Studio Code](https://code.visualstudio.com/) - Text editor
 - [GitHub](https://github.com/) - Version control tool
+
+**_ Backend _**
+
 - [Node.js](https://nodejs.org/en/) - Platform for running server-side JavaScript code
 - [Express](https://expressjs.com/fr/) - Web framework for Node.js
 - [MongoDB](https://www.mongodb.com/fr-fr) - NoSQL database storing JSON documents
+
+**_ Frontend _**
+
+- [Angular](https://angular.io/) - Web application Framework
+- [Bootstrap](https://getbootstrap.com/) - CSS Framework
+- [SASS](https://sass-lang.com/) - CSS Pre-Processor
+- [TypeScript](https://www.typescriptlang.org/) - Programming Language
 
 ## More Projects
 
