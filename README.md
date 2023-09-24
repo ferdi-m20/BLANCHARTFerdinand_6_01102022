@@ -2,6 +2,10 @@
 
 A web application to add, edit, delete, like or dislike products (here sauces)
 
+## Back end Prerequisites
+
+You will need to have Node and `npm` installed locally on your machine
+
 ## Installation
 
 ### Installing and launching Back-end:
